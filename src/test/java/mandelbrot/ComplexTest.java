@@ -95,6 +95,7 @@ public class ComplexTest {
 
     }
 
+
     @Test
     void testDivide(){
         assertEquals(onePlusI, onePlusI.divide(Complex.ONE));
