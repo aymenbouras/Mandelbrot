@@ -87,6 +87,13 @@ public class ComplexTest {
         assertEquals(new Complex(real-1,imaginary-1),
                 new Complex(real, imaginary).subtract(onePlusI));
     }
+    @Test
+    void testMultiply(){
+        assertEquals(onePlusI, onePlusI.multiply(Complex.ONE));
+        assertEquals(new Complex(2, 0), Complex.ONE.multiply(two));
+        assertEquals(new Complex(2,0),oneMinusI.multiply(onePlusI));
+
+    }
 
     @Test
     void testDivide(){
