@@ -79,7 +79,7 @@ public class Complex {
      * @return a complex number, whose multiplication corresponds to a rotation by the given angle.
      */
     static Complex rotation(double radians) {
-        return new Complex(-Math.cos(radians), Math.sin(radians));
+        return new Complex(Math.cos(radians), Math.sin(radians));
     }
 
     /**
@@ -109,7 +109,7 @@ public class Complex {
      * @return A complex <code>c</code> such that <code>this + c = 0</code>
      */
     Complex negate() {
-        return new Complex(-this.real, this.imaginary);
+        return new Complex(-this.real, -this.imaginary);
     }
 
     /**
@@ -128,7 +128,7 @@ public class Complex {
      * @return the complex number {@code (this - subtrahend)}
      */
     Complex subtract(Complex subtrahend) {
-        return new Complex( this.real +this.imaginary  , -subtrahend.real - subtrahend.imaginary);
+        return new Complex( this.real-subtrahend.real   , this.imaginary - subtrahend.imaginary);
     }
 
     /**
@@ -149,7 +149,7 @@ public class Complex {
      * @return <code>||this|| ** 2</code>
      */
     double squaredModulus() {
-        return Math.sqrt(squaredModulus());
+        return real * real + imaginary * imaginary;
     }
 
     /**
@@ -158,7 +158,8 @@ public class Complex {
      * @return <code>||this||</code>
      */
     double modulus() {
-        return real * real * imaginary * imaginary;
+        return Math.sqrt(squaredModulus());
+
     }
 
 
@@ -172,7 +173,7 @@ public class Complex {
             throw new ArithmeticException("divide by zero");
         }
         double m = squaredModulus();
-        return new Complex(real / m, imaginary / m);
+        return new Complex(real / m, -imaginary / m);
     }
 
     /**
@@ -187,8 +188,8 @@ public class Complex {
         }
         double m = divisor.squaredModulus();
         return new Complex(
-                (this.real * divisor.real - this.imaginary * divisor.imaginary) / m,
-                (this.imaginary * divisor.real + this.real * divisor.imaginary) / m
+                (this.real * divisor.real + this.imaginary * divisor.imaginary) / m,
+                (this.imaginary * divisor.real - this.real * divisor.imaginary) / m
         );
     }
 
